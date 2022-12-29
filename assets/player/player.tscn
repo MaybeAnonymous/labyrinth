@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7nqyi056tfr2"]
+
+[ext_resource type="Script" path="res://assets/player/player.gd" id="1_1lseu"]
+[ext_resource type="Texture2D" uid="uid://df3ybeo5s6qh" path="res://assets/images/dot.png" id="2_m4cix"]
+[ext_resource type="Texture2D" uid="uid://dtl0xkutpl37k" path="res://assets/images/circle.png" id="3_sil8d"]
+[ext_resource type="Script" path="res://assets/scripts/camera.gd" id="4_xhiub"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjmx7"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_gjmtr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.314286, 0.504762, 0.647619, 0.8, 0.904762)
+colors = PackedColorArray(1, 1, 1, 1, 0.571429, 0.571429, 0.571429, 1, 0.371662, 0.371662, 0.371662, 1, 0.259294, 0.259294, 0.259294, 1, 0.144052, 0.144052, 0.144052, 1, 0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckhe5"]
+size = Vector2(16, 16)
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+motion_mode = 1
+script = ExtResource("1_1lseu")
+
+[node name="CollisionRay" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qjmx7")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+fixed_fps = 30
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_gjmtr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m4cix")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("3_sil8d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource("4_xhiub")
+
+[node name="DeathDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathDetector"]
+shape = SubResource("RectangleShape2D_ckhe5")
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Black" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_right = 320.0
+offset_bottom = 256.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="area_entered" from="DeathDetector" to="." method="_on_death_detector_area_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

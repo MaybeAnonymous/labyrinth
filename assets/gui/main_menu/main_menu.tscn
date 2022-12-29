@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6jbskd3sws8u"]
+
+[ext_resource type="Script" path="res://assets/gui/main_menu/main_menu.gd" id="1_ip10h"]
+[ext_resource type="FontFile" uid="uid://dcy0cmxi34kur" path="res://assets/fonts/PixeloidSansBold-RpeJo.ttf" id="2_4q5ae"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d30br"]
+font = ExtResource("2_4q5ae")
+font_size = 24
+
+[node name="MainMenu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ip10h")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 320.0
+offset_bottom = 239.0
+
+[node name="PressAnyButton" type="Label" parent="CenterContainer"]
+texture_filter = 1
+offset_left = 47.0
+offset_top = 103.0
+offset_right = 272.0
+offset_bottom = 136.0
+text = "Press any key"
+label_settings = SubResource("LabelSettings_d30br")
+horizontal_alignment = 1
+vertical_alignment = 1
