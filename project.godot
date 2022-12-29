@@ -23,6 +23,8 @@ _global_script_class_icons={
 config/name="creatus_game_jam"
 run/main_scene="res://assets/gui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [display]

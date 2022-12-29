@@ -1,22 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://8f4awp5t0wvi"]
-
-[ext_resource type="Texture2D" uid="uid://df3ybeo5s6qh" path="res://assets/images/dot.png" id="1_jcwbl"]
-[ext_resource type="Texture2D" uid="uid://dtl0xkutpl37k" path="res://assets/images/circle.png" id="2_072ts"]
+[gd_scene load_steps=2 format=3 uid="uid://8f4awp5t0wvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oe65t"]
 size = Vector2(14, 14)
 
 [node name="Death" type="Area2D" groups=["death"]]
 texture_filter = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
-texture = ExtResource("1_jcwbl")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(1, 0, 0, 1)
-texture = ExtResource("2_072ts")
-texture_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oe65t")
